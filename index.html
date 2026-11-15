@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#E9F1F7">
+<meta name="description" content="大学生反诈公益宣传 H5｜守住青春钱包，远离校园诈骗">
+<title>守住青春钱包，远离校园诈骗</title>
+<style>
+:root{
+  --bg:#E9F1F7;
+  --paper:#FFFFFF;
+  --ink:#0F2532;
+  --ink2:#4A5F6B;
+  --ink3:#55697A;
+  --blue:#1D4E6F;
+  --blue-d:#143A52;
+  --red:#BE3A25;
+  --line:#D7E3EC;
+  --sans:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --serif:"Songti SC","STSong","Noto Serif SC",Georgia,serif;
+  --pad:26px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;padding:0}
+body{
+  background:var(--bg);color:var(--ink);font-family:var(--sans);
+  height:100dvh;overflow-y:scroll;scroll-snap-type:y mandatory;
+  -webkit-overflow-scrolling:touch;overscroll-behavior-y:none;
+}
+p{margin:0}
+button{font-family:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* ---------- 屏 ---------- */
+.s{
+  position:relative;height:100dvh;scroll-snap-align:start;scroll-snap-stop:always;
+  padding:54px 26px 56px;
+  padding-top:calc(env(safe-area-inset-top) + 54px);
+  padding-bottom:calc(env(safe-area-inset-bottom) + 56px);
+  display:flex;flex-direction:column;overflow:hidden;
+}
+.s--paper{background:var(--paper)}
+.s--blue{background:var(--bg)}
+
+/* 顶部进度 */
+.rail{position:fixed;top:0;left:0;height:2px;width:0;background:var(--red);z-index:60;transition:width .12s linear}
+
+/* ---------- 封面 ---------- */
+.cover{justify-content:center;background:var(--bg)}
+.shield{
+  position:absolute;right:-16%;top:4%;width:72%;opacity:.075;pointer-events:none;
+}
+.cover-kicker{font-size:12px;letter-spacing:.34em;color:var(--blue);margin-bottom:26px}
+.cover h1{
+  font-size:clamp(34px,10.4vw,48px);line-height:1.28;font-weight:800;letter-spacing:.01em;margin:0;
+}
+.cover h1 em{font-style:normal;display:block;color:var(--blue)}
+.cover-sub{margin-top:22px;font-size:14.5px;line-height:1.8;color:var(--ink2);max-width:15em}
+.cover-meta{margin-top:16px;font-size:12px;color:var(--ink3);letter-spacing:.06em}
+.cover-cta{
+  margin-top:44px;align-self:flex-start;display:inline-flex;align-items:center;gap:12px;
+  background:var(--blue);color:#fff;padding:16px 26px;border-radius:2px;
+  font-size:16px;font-weight:600;letter-spacing:.04em;
+  box-shadow:0 10px 24px -14px rgba(20,58,82,.8);
+  transition:transform .25s cubic-bezier(.22,1,.36,1),background .2s;
+}
+.cover-cta:active{transform:translateY(2px);background:var(--blue-d)}
+.cover-cta svg{transition:transform .3s}
+.cover-cta:active svg{transform:translateX(3px)}
+.cover-foot{position:absolute;left:var(--pad);bottom:calc(env(safe-area-inset-bottom) + 30px);font-size:12px;color:var(--ink3);letter-spacing:.06em}
+
+/* ---------- 通用块 ---------- */
+.eyebrow{font-size:12px;letter-spacing:.2em;color:var(--red);margin-bottom:16px}
+.h2{font-size:clamp(25px,7vw,32px);line-height:1.42;font-weight:800;margin:0 0 18px}
+.lede{font-size:15px;line-height:1.95;color:var(--ink2)}
+.up-hint{
+  position:absolute;left:0;right:0;bottom:calc(env(safe-area-inset-bottom) + 22px);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  font-size:12px;letter-spacing:.16em;color:var(--ink3);
+}
+.up-hint svg{animation:up 2.2s ease-in-out infinite}
+@keyframes up{0%,100%{transform:translateY(0);opacity:.5}50%{transform:translateY(-6px);opacity:1}}
+
+/* ---------- 前言 ---------- */
+.stat-big{display:flex;align-items:baseline;gap:8px;margin:6px 0 4px}
+.stat-big b{font-size:clamp(56px,18vw,76px);font-weight:800;letter-spacing:-.03em;color:var(--red);line-height:1;font-variant-numeric:tabular-nums}
+.stat-big span{font-size:16px;font-weight:600;color:var(--red)}
+.stat-note{font-size:13px;color:var(--ink3);margin-bottom:26px;line-height:1.6}
+.divider{height:1px;background:var(--line);margin:24px 0}
+.body-copy{font-size:14.5px;line-height:2.05;color:var(--ink2)}
+.body-copy + .body-copy{margin-top:14px}
+.body-copy strong{color:var(--ink);font-weight:600}
+.foot-stat{
+  display:flex;gap:18px;margin-top:auto;margin-bottom:44px;padding-top:22px;border-top:1px solid var(--line);
+}
+.foot-stat > div{flex:1;min-width:0}
+.foot-stat b{font-size:24px;font-weight:800;color:var(--blue);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+.foot-stat span{font-size:12px;color:var(--blue);margin-left:3px;font-weight:600}
+.foot-stat i{display:block;font-style:normal;font-size:12px;color:var(--ink3);margin-top:6px;line-height:1.5}
+
+/* ---------- 图鉴 ---------- */
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:6px;flex:1;grid-auto-rows:1fr}
+.card{
+  position:relative;background:var(--paper);border:1px solid var(--line);border-radius:2px;
+  padding:15px 13px 14px;min-height:112px;text-align:left;display:flex;flex-direction:column;
+  justify-content:flex-start;gap:8px;
+  transition:transform .18s,border-color .18s,box-shadow .18s;
+}
+.s--paper .card{background:#F4F9FC}
+.card:active{transform:scale(.975);border-color:var(--blue)}
+.card svg{width:22px;height:22px;color:var(--blue)}
+.card h3{font-size:14px;font-weight:600;line-height:1.4;margin:auto 0 0}
+.card i{font-size:12px;color:var(--ink3);font-style:normal;letter-spacing:.04em}
+.grid-hint{margin-top:14px;padding-top:4px;font-size:12px;color:var(--ink3);letter-spacing:.04em;text-align:center}
+
+/* ---------- 弹窗 ---------- */
+.sheet{
+  position:fixed;inset:0;z-index:50;display:none;
+}
+.sheet.on{display:block}
+.sheet-bg{position:absolute;inset:0;background:rgba(15,37,50,.42);opacity:0;transition:opacity .3s}
+.sheet.on .sheet-bg{opacity:1}
+.sheet-body{
+  position:absolute;left:0;right:0;bottom:0;background:var(--paper);
+  border-radius:14px 14px 0 0;padding:26px var(--pad) calc(env(safe-area-inset-bottom) + 30px);
+  transform:translateY(100%);transition:transform .38s cubic-bezier(.22,1,.36,1);
+  max-height:82dvh;overflow-y:auto;
+}
+.sheet.on .sheet-body{transform:none}
+.sheet-close{
+  position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;background:#EDF3F7;color:var(--ink2);
+}
+.sheet h3{font-size:21px;font-weight:700;margin:0 0 4px;padding-right:40px}
+.sheet .tagline{font-size:12px;color:var(--red);letter-spacing:.12em;margin-bottom:20px}
+.sheet dl{margin:0}
+.sheet dt{font-size:12px;color:var(--ink3);letter-spacing:.14em;margin:18px 0 7px}
+.sheet dd{margin:0;font-size:14px;line-height:1.95;color:var(--ink2)}
+.sheet dd.warn{color:var(--ink);font-weight:500}
+
+/* ---------- 反差 ---------- */
+.swipe-wrap{position:relative;margin:18px -4px 0;overflow:hidden;touch-action:pan-y}
+.track{display:flex;transition:transform .48s cubic-bezier(.22,1,.36,1);will-change:transform}
+.panel{flex:0 0 100%;padding:0 4px}
+.panel-inner{background:var(--paper);border:1px solid var(--line);border-radius:2px;padding:26px 22px;min-height:330px;display:flex;flex-direction:column;justify-content:center}
+.panel--bad .panel-inner{background:var(--ink);border-color:var(--ink);color:#fff}
+.panel-tag{font-size:12px;letter-spacing:.2em;margin-bottom:16px;color:var(--ink3)}
+.panel--bad .panel-tag{color:#8FA9B8}
+.panel h3{font-size:19px;font-weight:700;margin:0 0 18px}
+.quote{font-size:15px;line-height:1.95;color:var(--ink2);padding-left:14px;border-left:2px solid var(--line);margin-bottom:12px}
+.panel--bad .quote{color:#D9E4EB;border-color:rgba(255,255,255,.18)}
+.panel--bad .quote b{color:#FF8E77;font-weight:600}
+.swipe-nav{display:flex;align-items:center;justify-content:space-between;margin-top:20px}
+.swipe-dots{display:flex;gap:6px}
+.swipe-dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:.3s}
+.swipe-dots i.on{background:var(--blue);width:20px;border-radius:3px}
+.swipe-tip{font-size:12px;color:var(--ink3);letter-spacing:.1em}
+.banner{margin-top:22px;font-size:13.5px;line-height:1.8;color:var(--ink);font-weight:600;
+  border-left:3px solid var(--red);padding-left:12px}
+
+/* ---------- 拖拽 ---------- */
+.pool{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px;min-height:74px}
+.chip{
+  display:inline-flex;align-items:center;background:var(--paper);border:1px solid var(--line);
+  border-radius:2px;padding:10px 14px;font-size:13.5px;font-weight:500;
+  touch-action:none;user-select:none;-webkit-user-select:none;
+  transition:transform .16s,box-shadow .16s,opacity .2s;
+}
+.s--paper .chip{background:#F4F9FC}
+.chip.dragging{opacity:.35}
+.chip.ghost{position:fixed;z-index:70;pointer-events:none;box-shadow:0 12px 26px -12px rgba(15,37,50,.5);transform:scale(1.04)}
+.zones{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:20px;flex:1;margin-bottom:6px}
+.zone{
+  border:1px dashed var(--line);border-radius:2px;background:rgba(255,255,255,.6);
+  padding:12px;min-height:200px;transition:border-color .2s,background .2s;
+  display:flex;flex-direction:column;
+}
+.zone h3{font-size:12px;letter-spacing:.1em;margin:0 0 10px;color:var(--ink2);font-weight:600}
+.zone .ph{margin:auto;font-size:12px;color:#5F7486;text-align:center;line-height:1.7;letter-spacing:.02em}
+.zone.safe h3{color:#1E7A5E}
+.zone.risk h3{color:var(--red)}
+.zone.hover{border-color:var(--blue);background:rgba(29,78,111,.06)}
+.zone .drop{display:flex;flex-wrap:wrap;gap:6px}
+.zone .drop span{font-size:12px;padding:6px 9px;background:#E7F0F5;border-radius:2px;color:var(--ink2)}
+.zone.risk .drop span{background:#FBEAE6;color:#8E3324}
+.toast{
+  position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom) + 30px);transform:translate(-50%,20px);
+  background:var(--ink);color:#fff;padding:12px 18px;border-radius:2px;font-size:13.5px;
+  opacity:0;pointer-events:none;transition:.3s;z-index:80;max-width:82vw;text-align:center;line-height:1.5;
+}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.toast.ok{background:#1E7A5E}
+.shake{animation:shake .34s}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* ---------- 求助 ---------- */
+.phone{
+  display:flex;align-items:baseline;gap:10px;padding:22px 0 8px;border-bottom:1px solid var(--line);
+}
+.phone b{font-size:clamp(46px,15vw,62px);font-weight:800;letter-spacing:-.02em;color:var(--blue);
+  font-variant-numeric:tabular-nums;line-height:1}
+.phone span{font-size:14px;color:var(--ink2);font-weight:600}
+.steps{margin-top:22px;counter-reset:st}
+.step{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.step em{flex:0 0 22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;
+  font-size:12px;font-style:normal;display:grid;place-items:center;font-weight:600;margin-top:2px}
+.step p{font-size:14px;line-height:1.75;color:var(--ink2)}
+.step p b{color:var(--ink);font-weight:600}
+.alert{
+  margin-top:20px;background:#FBEAE6;border-left:3px solid var(--red);padding:14px 16px;
+  font-size:13.5px;line-height:1.7;color:#8E3324;font-weight:500;
+}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tools span{font-size:12px;color:var(--ink2);border:1px solid var(--line);padding:7px 11px;border-radius:2px}
+
+/* ---------- 宣誓 ---------- */
+.oath{font-family:var(--serif);font-size:16.5px;line-height:2.15;color:var(--ink);
+  border:1px solid var(--line);background:var(--paper);padding:26px 22px;border-radius:2px}
+.oath p{margin:0}
+.oath .lead{font-weight:700;margin-bottom:10px;letter-spacing:.06em}
+.oath-btn{
+  margin-top:24px;width:100%;background:var(--red);color:#fff;padding:17px;border-radius:2px;
+  font-size:16px;font-weight:600;letter-spacing:.05em;transition:transform .2s,background .2s;
+  box-shadow:0 12px 26px -16px rgba(200,64,42,.9);
+}
+.oath-btn:active{transform:translateY(2px);background:#AD341F}
+.poster-wrap{margin-top:20px;display:none}
+.poster-wrap.on{display:block}
+.poster-wrap img{width:100%;border:1px solid var(--line);border-radius:2px;display:block}
+.poster-tip{margin-top:12px;font-size:12px;color:var(--ink3);text-align:center;letter-spacing:.06em}
+
+/* ---------- 封底 ---------- */
+.end{justify-content:center;align-items:flex-start;background:var(--ink);color:#fff}
+.end h2{font-size:clamp(30px,9.6vw,44px);line-height:1.32;font-weight:800;margin:0}
+.end h2 span{display:block;color:#7FB2CE}
+.end p{margin-top:20px;font-size:14px;line-height:1.9;color:#A9C0CD}
+.end-foot{position:absolute;left:var(--pad);bottom:calc(env(safe-area-inset-bottom) + 30px);
+  font-size:12px;color:#8AA5B5;letter-spacing:.06em;line-height:1.9}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  body{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="rail" id="rail"></div>
+
+<!-- 1 封面 -->
+<section class="s cover" id="p1">
+  <svg class="shield" viewBox="0 0 100 116" fill="none" stroke="#1D4E6F" stroke-width="1.8" stroke-linejoin="round">
+    <path d="M50 3 95 19v38c0 27-18 45-45 56C23 102 5 84 5 57V19L50 3Z"/>
+    <rect x="34" y="53" width="32" height="25" rx="4"/>
+    <path d="M41 53v-7a9 9 0 0 1 18 0v7" stroke-linecap="round"/>
+  </svg>
+  <div class="cover-kicker">大学生反诈公益宣传</div>
+  <h1>守住青春钱包<em>远离校园诈骗</em></h1>
+  <p class="cover-sub">提高防诈意识，守护你的生活费。八页图鉴，六个真实套路，一次说清。</p>
+  <div class="cover-meta">共 8 页 · 约 3 分钟 · 最后一页可生成海报</div>
+  <button class="cover-cta" id="go">
+    点击开启宣传图鉴
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M1 8h13M9 3l5 5-5 5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+  <div class="cover-foot">向上滑动可随时继续</div>
+</section>
+
+<!-- 2 前言 -->
+<section class="s s--paper" id="p2">
+  <div class="eyebrow">前言</div>
+  <h2 class="h2">先看一个数字，<br>再决定要不要往下读。</h2>
+  <div class="stat-big"><b>84.9</b><span>%</span></div>
+  <p class="stat-note">过去一年，高校师生中收到过疑似诈骗信息的比例。<br>其中 35.6% 说，是「经常收到」。</p>
+  <div class="divider"></div>
+  <p class="body-copy">互联网已经长进了大学生的兼职、网购、社交、缴费和日常消费里。诈骗分子盯的正是这一点——你求职、想省钱、需要周转的那点心气。</p>
+  <p class="body-copy">虚假兼职、冒充师长、AI 伪造影像、套路网贷……很多同学不是没听过，是那一刻<strong>来不及核实</strong>。这八页，带你把套路看一遍。</p>
+  <div class="foot-stat">
+    <div><b>25.8</b><span>万起</span><i>2025 年全国侦破电诈案件</i></div>
+    <div><b>2170.7</b><span>亿元</span><i>紧急拦截止付涉诈资金</i></div>
+  </div>
+  <div class="up-hint">
+    <span>向上滑动</span>
+    <svg width="13" height="18" viewBox="0 0 13 18" fill="none" stroke="#8FA3AE" stroke-width="1.4">
+      <path d="M6.5 17V2M1.5 6.5 6.5 1.5l5 5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+</section>
+
+<!-- 3 图鉴 -->
+<section class="s s--blue" id="p3">
+  <div class="eyebrow">核心图鉴</div>
+  <h2 class="h2">校园高发骗局<br>点开看套路。</h2>
+  <div class="grid" id="grid"></div>
+  <p class="grid-hint">点击任意卡片，看它怎么把人骗进去。</p>
+</section>
+
+<!-- 4 反差 -->
+<section class="s s--paper" id="p4">
+  <div class="eyebrow">反差警示</div>
+  <h2 class="h2">别让侥幸，<br>变成遗憾。</h2>
+  <div class="swipe-wrap" id="swipe">
+    <div class="track" id="track4">
+      <div class="panel">
+        <div class="panel-inner">
+          <div class="panel-tag">一开始，很多人这样想</div>
+          <h3>就试一下，应该没事</h3>
+          <p class="quote">「就刷一单试试，不会被骗」</p>
+          <p class="quote">「老师不会骗我，先转了再说」</p>
+          <p class="quote">「只是借一点钱，很快就能还清」</p>
+          <p class="quote">「只是一个链接，点一下没事」</p>
+        </div>
+      </div>
+      <div class="panel panel--bad">
+        <div class="panel-inner">
+          <div class="panel-tag">被骗之后，才明白代价</div>
+          <h3>代价不会提前通知你</h3>
+          <p class="quote">生活费、积蓄被套空，<b>19.0% 的学生单次损失超过 5000 元</b></p>
+          <p class="quote">不敢告诉家人，心理压力远比钱更久</p>
+          <p class="quote">背上高额债务，直接影响学业</p>
+          <p class="quote">个人信息泄露，被持续骚扰</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="swipe-nav">
+    <div class="swipe-dots" id="dots4"><i class="on"></i><i></i></div>
+    <div class="swipe-tip" id="tip4">向左滑动，看看另一面</div>
+  </div>
+  <p class="banner">诈骗没有「试一试」。一次轻信，就可能是全部生活费。</p>
+</section>
+
+<!-- 5 拖拽 -->
+<section class="s s--paper" id="p5">
+  <div class="eyebrow">行为归类</div>
+  <h2 class="h2">反诈行为小课堂</h2>
+  <p class="lede" style="font-size:13.5px">把下面的行为，拖进它该去的框里。</p>
+  <div class="pool" id="pool"></div>
+  <div class="zones">
+    <div class="zone safe" data-zone="safe"><h3>安全行为区</h3><div class="ph">可以放心做的事<br>拖到这里</div><div class="drop" id="dropSafe"></div></div>
+    <div class="zone risk" data-zone="risk"><h3>危险行为区</h3><div class="ph">一次都不能碰<br>拖到这里</div><div class="drop" id="dropRisk"></div></div>
+  </div>
+</section>
+
+<!-- 6 求助 -->
+<section class="s s--paper" id="p6">
+  <div class="eyebrow">被骗之后</div>
+  <h2 class="h2">记住这个号码。</h2>
+  <div class="phone"><b>96110</b><span>国家反诈专线</span></div>
+  <div class="steps">
+    <div class="step"><em>1</em><p>立刻<strong>停止转账</strong>，保留全部聊天记录、转账截图、对方账号。</p></div>
+    <div class="step"><em>2</em><p>拨 <strong>96110</strong> 咨询、止付；情况紧急直接拨 <strong>110</strong> 报警。</p></div>
+    <div class="step"><em>3</em><p>同步上报<strong>辅导员与学校保卫处</strong>，别一个人扛。</p></div>
+    <div class="step"><em>4</em><p>到派出所做笔录，拿到受案回执，后续追赃要用。</p></div>
+  </div>
+  <div class="alert">96110 来电一定要接。这是反诈预警电话，不是骚扰电话。</div>
+  <div class="tools"><span>12381 涉诈预警短信</span><span>国家反诈中心 App</span><span>云闪付「一键查卡」</span></div>
+</section>
+
+<!-- 7 宣誓 -->
+<section class="s s--blue" id="p7">
+  <div class="eyebrow">反诈承诺</div>
+  <h2 class="h2">从我做起。</h2>
+  <div class="oath">
+    <p class="lead">我承诺</p>
+    <p>不轻信网络高薪诱惑；</p>
+    <p>不参与刷单、垫付类兼职；</p>
+    <p>不点击来路不明的链接；</p>
+    <p>不触碰各类网络贷款；</p>
+    <p>凡是要求转账，多方核实；</p>
+    <p>提高反诈意识，守护自身财产；</p>
+    <p>争做反诈宣传大学生。</p>
+  </div>
+  <button class="oath-btn" id="posterBtn">点击宣誓，生成宣传海报</button>
+  <div class="poster-wrap" id="posterWrap">
+    <img id="posterImg" alt="反诈承诺海报" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+    <p class="poster-tip">长按图片保存，转发给身边同学</p>
+  </div>
+</section>
+
+<!-- 8 封底 -->
+<section class="s end" id="p8">
+  <h2>反诈于心<span>守财于行</span></h2>
+  <p>反诈宣传，我们一直在行动。<br>把这一页，转给那个总说「我不会被骗」的同学。</p>
+  <div class="end-foot">警惕诈骗，平安校园<br>数据：公安部 2025 年反诈通报 · 麦可思 2025 校园反诈研究</div>
+</section>
+
+<!-- 弹窗 -->
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle">
+  <div class="sheet-bg" data-close></div>
+  <div class="sheet-body">
+    <button class="sheet-close" data-close aria-label="关闭">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6">
+        <path d="M1 1l12 12M13 1L1 13" stroke-linecap="round"/>
+      </svg>
+    </button>
+    <h3 id="shTitle">标题</h3>
+    <div class="tagline" id="shTag">—</div>
+    <dl>
+      <dt>案例与套路</dt>
+      <dd id="shCase">—</dd>
+      <dt>防范要点</dt>
+      <dd class="warn" id="shTip">—</dd>
+    </dl>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  'use strict';
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ============ 进度 ============ */
+  var rail = document.getElementById('rail');
+  var scroller = document.body;
+  function onScroll(){
+    var h = scroller.scrollHeight - innerHeight;
+    rail.style.width = (h > 0 ? Math.min(100, scroller.scrollTop / h * 100) : 0) + '%';
+  }
+  scroller.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  document.getElementById('go').addEventListener('click', function(){
+    document.getElementById('p2').scrollIntoView({behavior: reduced ? 'auto' : 'smooth'});
+  });
+
+  /* ============ 图鉴数据 ============ */
+  var ICONS = {
+    repeat:'<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v4h-4"/>',
+    user:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5S20 17 20 21"/>',
+    headset:'<path d="M4 13v-1a8 8 0 0 1 16 0v1"/><rect x="2" y="13" width="4" height="6" rx="1.6"/><rect x="18" y="13" width="4" height="6" rx="1.6"/><path d="M20 19v1a3 3 0 0 1-3 3h-3"/>',
+    game:'<rect x="2" y="8" width="20" height="9" rx="4.5"/><path d="M7 10.5v4M5 12.5h4"/><circle cx="16.6" cy="11.6" r=".9"/><circle cx="18.6" cy="13.8" r=".9"/>',
+    yen:'<path d="M6 3.5 12 11l6-7.5M12 11v9.5M7.5 13.5h9M7.5 17.5h9"/>',
+    face:'<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10h.01M16 10h.01M8.5 15c1 1.1 2.2 1.6 3.5 1.6s2.5-.5 3.5-1.6"/>'
+  };
+
+  var CASES = [
+    {t:'虚假刷单返利', i:'repeat', tag:'兼职群里最常见',
+     c:'兼职群看到「日入两百，一单一结」。先小额返利获取信任，再接大额垫付任务，转账后失联。用小红包逐步加大垫付金额。',
+     w:'刷单本身违法，不存在正规刷单兼职。凡是「垫付返利」，一律拒绝。'},
+    {t:'冒充师长辅导员', i:'user', tag:'利用你对老师的信任',
+     c:'微信上有人伪装辅导员，以补缴教材费、紧急材料费为由要求私下转账，还不让你告诉别人。制造「紧急、保密」的压迫感。',
+     w:'所有缴费走学校教务官方渠道。私聊要求转账，务必电话或线下当面核实。'},
+    {t:'假冒客服退款理赔', i:'headset', tag:'包裹丢失、订单异常',
+     c:'自称平台客服，说包裹丢失、订单异常，发链接让你填银行卡和验证码办理理赔。用理赔做诱饵，盗取银行卡信息。',
+     w:'退款只在购物 App 内操作。不点陌生链接，绝不向任何人提供验证码。'},
+    {t:'游戏账号私下交易', i:'game', tag:'脱离平台就没有监管',
+     c:'买卖游戏账号、皮肤时被诱导脱离官方平台，微信直接转账，收钱后拉黑。抓住你想低价买、高价卖的心理。',
+     w:'账号交易风险极高。只走官方认证渠道，拒绝私下转账。'},
+    {t:'校园套路贷', i:'yen', tag:'零门槛背后的高额费用',
+     c:'短视频看到「零门槛、低息快速放款」，用来超前消费，最后利滚利。隐藏高额服务费、违约金，看似小额，债务失控。',
+     w:'理性消费。助学贷款只申请学校官方渠道，远离各类网贷。'},
+    {t:'AI 换脸冒充亲友', i:'face', tag:'长相声音都能造假',
+     c:'视频通话里，对方长相、声音和熟人几乎一样，说有急事借钱。AI 复刻人脸和声音，伪造视频迷惑当事人。',
+     w:'视频借钱不能直接相信。必须再打电话、线下多重核实身份。'}
+  ];
+
+  var grid = document.getElementById('grid');
+  CASES.forEach(function(c, idx){
+    var b = document.createElement('button');
+    b.className = 'card';
+    b.type = 'button';
+    b.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" ' +
+      'stroke-linecap="round" stroke-linejoin="round">' + ICONS[c.i] + '</svg>' +
+      '<h3>' + c.t + '</h3><i>' + c.tag + '</i>';
+    b.addEventListener('click', function(){ openSheet(idx); });
+    grid.appendChild(b);
+  });
+
+  /* ============ 弹窗 ============ */
+  var sheet = document.getElementById('sheet');
+  function openSheet(i){
+    var c = CASES[i];
+    document.getElementById('shTitle').textContent = c.t;
+    document.getElementById('shTag').textContent = c.tag;
+    document.getElementById('shCase').textContent = c.c;
+    document.getElementById('shTip').textContent = c.w;
+    sheet.classList.add('on');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSheet(){
+    sheet.classList.remove('on');
+    document.body.style.overflow = '';
+  }
+  sheet.addEventListener('click', function(e){
+    if(e.target.hasAttribute('data-close')) closeSheet();
+  });
+
+  /* ============ 反差滑动 ============ */
+  var swipe = document.getElementById('swipe');
+  var track4 = document.getElementById('track4');
+  var dots4 = document.getElementById('dots4').children;
+  var tip4 = document.getElementById('tip4');
+  var idx4 = 0, startX = 0, dx = 0, down = false;
+
+  function set4(i){
+    idx4 = Math.max(0, Math.min(1, i));
+    track4.style.transform = 'translateX(' + (-idx4 * 100) + '%)';
+    for(var k = 0; k < dots4.length; k++) dots4[k].classList.toggle('on', k === idx4);
+    tip4.textContent = idx4 === 0 ? '向左滑动，看看另一面' : '向右滑动，回到侥幸';
+  }
+  swipe.addEventListener('pointerdown', function(e){
+    down = true; startX = e.clientX; dx = 0;
+    track4.style.transition = 'none';
+  });
+  swipe.addEventListener('pointermove', function(e){
+    if(!down) return;
+    dx = e.clientX - startX;
+    var w = swipe.offsetWidth;
+    var pct = dx / w * 55;
+    track4.style.transform = 'translateX(' + (-idx4 * 100 + pct) + '%)';
+  });
+  function up(){
+    if(!down) return;
+    down = false;
+    track4.style.transition = '';
+    if(dx < -46) set4(idx4 + 1);
+    else if(dx > 46) set4(idx4 - 1);
+    else set4(idx4);
+  }
+  swipe.addEventListener('pointerup', up);
+  swipe.addEventListener('pointercancel', up);
+  swipe.addEventListener('pointerleave', function(){ if(down) up(); });
+  set4(0);
+
+  /* ============ 拖拽分类 ============ */
+  var TAGS = [
+    {t:'私聊转账', z:'risk'},
+    {t:'官方电话核验', z:'safe'},
+    {t:'陌生链接', z:'risk'},
+    {t:'正规平台交易', z:'safe'},
+    {t:'校园网贷', z:'risk'},
+    {t:'咨询保卫处', z:'safe'}
+  ];
+  var pool = document.getElementById('pool');
+  var zones = [].slice.call(document.querySelectorAll('.zone'));
+  var toast = document.getElementById('toast');
+  var placed = 0, toastTimer = null;
+
+  function showToast(msg, ok){
+    toast.textContent = msg;
+    toast.className = 'toast on' + (ok ? ' ok' : '');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.className = 'toast'; }, 1700);
+  }
+
+  function makeChip(tag){
+    var el = document.createElement('div');
+    el.className = 'chip';
+    el.textContent = tag.t;
+    el.dataset.zone = tag.z;
+    el.setAttribute('role', 'button');
+    el.setAttribute('tabindex', '0');
+    el.setAttribute('aria-label', tag.t + '，拖动或点击归类');
+    bindDrag(el);
+    return el;
+  }
+
+  function bindDrag(el){
+    var ghost = null, ox = 0, oy = 0, active = false;
+
+    el.addEventListener('pointerdown', function(e){
+      if(el.dataset.done) return;
+      e.preventDefault();
+      active = true;
+      var r = el.getBoundingClientRect();
+      ox = e.clientX - r.left; oy = e.clientY - r.top;
+      ghost = el.cloneNode(true);
+      ghost.classList.add('ghost');
+      ghost.style.width = r.width + 'px';
+      ghost.style.left = r.left + 'px';
+      ghost.style.top = r.top + 'px';
+      document.body.appendChild(ghost);
+      el.classList.add('dragging');
+      el.setPointerCapture(e.pointerId);
+    });
+
+    el.addEventListener('pointermove', function(e){
+      if(!active || !ghost) return;
+      ghost.style.left = (e.clientX - ox) + 'px';
+      ghost.style.top = (e.clientY - oy) + 'px';
+      var z = zoneAt(e.clientX, e.clientY);
+      zones.forEach(function(n){ n.classList.toggle('hover', n === z); });
+    });
+
+    function finish(e){
+      if(!active) return;
+      active = false;
+      var zone = zoneAt(e.clientX, e.clientY);
+      if(ghost){ ghost.remove(); ghost = null; }
+      el.classList.remove('dragging');
+      zones.forEach(function(n){ n.classList.remove('hover'); });
+      if(!zone) return;
+      judge(el, zone);
+    }
+    el.addEventListener('pointerup', finish);
+    el.addEventListener('pointercancel', function(){
+      if(ghost){ ghost.remove(); ghost = null; }
+      active = false;
+      el.classList.remove('dragging');
+      zones.forEach(function(n){ n.classList.remove('hover'); });
+    });
+
+    /* 键盘 / 点击兜底：点一下，按正确位置归位 */
+    el.addEventListener('keydown', function(e){
+      if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); judge(el, el.dataset.zone === 'safe' ? zones[0] : zones[1]); }
+    });
+  }
+
+  function zoneAt(x, y){
+    for(var i = 0; i < zones.length; i++){
+      var r = zones[i].getBoundingClientRect();
+      if(x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return zones[i];
+    }
+    return null;
+  }
+
+  function judge(el, zone){
+    var right = zone.dataset.zone === el.dataset.zone;
+    if(right){
+      el.dataset.done = '1';
+      var drop = zone.querySelector('.drop');
+      var ph = zone.querySelector('.ph');
+      if(ph) ph.style.display = 'none';
+      var span = document.createElement('span');
+      span.textContent = el.textContent;
+      drop.appendChild(span);
+      el.remove();
+      placed++;
+      showToast('✅ 回答正确，牢记这个准则', true);
+      if(placed === TAGS.length){
+        setTimeout(function(){ showToast('六条全部归位，你已经分清边界了', true); }, 900);
+      }
+    } else {
+      el.classList.add('shake');
+      setTimeout(function(){ el.classList.remove('shake'); }, 380);
+      showToast('⚠️ 再想想。这属于高风险行为');
+    }
+  }
+
+  TAGS.forEach(function(t){ pool.appendChild(makeChip(t)); });
+
+  /* ============ 海报 ============ */
+  var OATH = ['不轻信网络高薪诱惑；','不参与刷单、垫付类兼职；','不点击来路不明的链接；',
+              '不触碰各类网络贷款；','凡是要求转账，多方核实；','提高反诈意识，守护自身财产；','争做反诈宣传大学生。'];
+
+  function drawPoster(){
+    var W = 750, H = 1200, S = 2;
+    var c = document.createElement('canvas');
+    c.width = W * S; c.height = H * S;
+    var x = c.getContext('2d');
+    x.scale(S, S);
+
+    x.fillStyle = '#E9F1F7';
+    x.fillRect(0, 0, W, H);
+
+    /* 盾牌水印 */
+    x.save();
+    x.globalAlpha = .08;
+    x.strokeStyle = '#1D4E6F';
+    x.lineWidth = 10;
+    x.beginPath();
+    x.moveTo(375, 70); x.lineTo(600, 150); x.lineTo(600, 400);
+    x.quadraticCurveTo(600, 560, 375, 640);
+    x.quadraticCurveTo(150, 560, 150, 400);
+    x.lineTo(150, 150); x.closePath(); x.stroke();
+    x.restore();
+
+    /* 白卡 */
+    x.fillStyle = '#fff';
+    x.fillRect(60, 120, 630, 860);
+
+    x.fillStyle = '#C8402A';
+    x.font = '600 22px -apple-system,"PingFang SC",sans-serif';
+    x.fillText('反 诈 承 诺', 100, 186);
+
+    x.fillStyle = '#0F2532';
+    x.font = '800 44px -apple-system,"PingFang SC",sans-serif';
+    x.fillText('守住青春钱包', 100, 258);
+    x.fillText('远离校园诈骗', 100, 316);
+
+    x.strokeStyle = '#D7E3EC'; x.lineWidth = 1;
+    x.beginPath(); x.moveTo(100, 356); x.lineTo(650, 356); x.stroke();
+
+    x.fillStyle = '#0F2532';
+    x.font = '700 26px "Songti SC",serif';
+    x.fillText('我承诺', 100, 410);
+
+    x.font = '400 24px "Songti SC",serif';
+    x.fillStyle = '#334A57';
+    OATH.forEach(function(line, i){
+      x.fillText(line, 100, 462 + i * 52);
+    });
+
+    /* 底部信息区 */
+    x.fillStyle = '#1D4E6F';
+    x.font = '800 62px -apple-system,"PingFang SC",sans-serif';
+    x.fillText('96110', 100, 906);
+    x.fillStyle = '#4A5F6B';
+    x.font = '400 19px -apple-system,"PingFang SC",sans-serif';
+    x.fillText('国家反诈专线｜来电一定要接', 100, 940);
+
+    x.fillStyle = '#0F2532';
+    x.font = '600 20px -apple-system,"PingFang SC",sans-serif';
+    x.fillText('2025 年，全国侦破电诈案件 25.8 万起', 60, 1042);
+    x.fillStyle = '#4A5F6B';
+    x.font = '400 18px -apple-system,"PingFang SC",sans-serif';
+    x.fillText('紧急止付涉诈资金 2170.7 亿元', 60, 1078);
+    x.fillStyle = '#8FA3AE';
+    x.font = '400 18px -apple-system,"PingFang SC",sans-serif';
+    x.fillText('守住钱包，从一个「不转账」开始', 60, 1112);
+
+    x.fillStyle = '#8FA3AE';
+    x.font = '400 16px -apple-system,"PingFang SC",sans-serif';
+    x.fillText('长按保存，转发给身边同学', 60, 1160);
+
+    return c.toDataURL('image/png');
+  }
+
+  var posterBtn = document.getElementById('posterBtn');
+  posterBtn.addEventListener('click', function(){
+    var img = document.getElementById('posterImg');
+    if(!img.dataset.done){ img.src = drawPoster(); img.dataset.done = '1'; }
+    document.getElementById('posterWrap').classList.add('on');
+    posterBtn.textContent = '海报已生成，长按下方图片保存';
+    posterBtn.disabled = true;
+    setTimeout(function(){
+      document.getElementById('posterWrap').scrollIntoView({behavior: reduced ? 'auto' : 'smooth', block:'center'});
+    }, 120);
+  });
+})();
+</script>
+</body>
+</html>
